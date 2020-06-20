@@ -2,7 +2,7 @@
 
 Web Programming with Python and JavaScript
 
-##Usage
+## Usage
 
 * Choose a username
 * Create a new channel or select an existent one
