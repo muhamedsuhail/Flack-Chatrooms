@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 from flask import Flask,session,render_template,request,redirect,flash,jsonify
 from jinja2 import Template
