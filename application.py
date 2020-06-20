@@ -122,7 +122,6 @@ def msgs(channelName):
     if messages[channelName]==[] :
         return '0'
     else:
-        print(messages)
         return jsonify(messages[channelName])
 
 #Socket to capture,store and broadcast new messages.

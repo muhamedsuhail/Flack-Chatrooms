@@ -1,7 +1,4 @@
-html{
-  overflow-y: hidden;
-  position: relative;
-}
+
 #menu
 {
   display: block;
@@ -87,7 +84,6 @@ textarea{
     margin:0 auto;
     width:60vw;
     height: 78vh;
-    /* overflow-y: scroll; */
   }
   #participants
   {

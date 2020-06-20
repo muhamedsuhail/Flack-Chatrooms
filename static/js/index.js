@@ -8,17 +8,7 @@ function funct(response)
                 contents[chn]={'ch':chn,'admin':response[chn][0]};
           }
     });
-
-    if(Object.keys(contents).length!==0)
-    {
-        document.querySelector('#head').innerHTML="Dashboard";
-    }
-
-    else
-    {
-        document.querySelector('#head').innerHTML="";
-    }
-
+    document.querySelector('#head').innerHTML=(Object.keys(contents).length!==0) ? "Dashboard":"";
     var chat=template({'contents':contents});
     document.querySelector('.list-group').innerHTML+=chat;
 };

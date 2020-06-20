@@ -46,7 +46,7 @@ textarea.addEventListener('keydown', event=>{
 });
 
 document.addEventListener('DOMContentLoaded',()=>{
-  
+
     //Ajax request to fetch all the previously stored messages of the channel.
 
     const request=new XMLHttpRequest();
@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     });
     var flag=false;
-    // var safari_flag=false;
 
     //Update broadcasted messages to DOM.
 
