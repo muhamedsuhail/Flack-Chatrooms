@@ -5,6 +5,7 @@ Flask-SocketIO==4.3.0
 gunicorn==19.10.0
 itsdangerous==1.1.0
 Jinja2>=2.10.1
-python-socketio==3.0.1
+python-engineio==3.4.3
+python-socketio==3.1.2
 Werkzeug==1.0.1
-tornado==6.0.4 
+tornado==6.0.4
