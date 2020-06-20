@@ -20,7 +20,7 @@ cupshelpers==1.0
 Cython==0.29.16
 defer==1.0.6
 distro-info===0.18ubuntu0.18.04.1
-Django==3.0.6
+Django==3.0.7
 enum34==1.1.6
 evdev==0.7.0
 f.lux-indicator-applet==1.1.11rc0
