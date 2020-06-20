@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Flack: Chat and discussion Platform
+{% endblock %}
+{% block head %}
+
+  {#  Checks for any previously left sessions to continue.  #}
+
+      <script type="text/javascript">
+          var last_user=localStorage.getItem("last_user");
+          var last_room=localStorage.getItem("last_room");
+          if(last_user)
+          {
+            if(last_room)
+            {
+                window.location.pathname=`/roompage/${last_room}`;
+            }
+            else
+            {
+                window.location.pathname='/index';
+            }
+          }
+      </script>
+
+{% endblock %}
+
+{% block body %}
+
+          <link rel="stylesheet" href="/static/css/login.css">
+
+          <div class="top-nav" style="text-align:center;">
+
+            <h2 style="text-align:center;margin-top:10px;"><span><img src="/static/icon.png" alt="icon"></span>Flack</h2>
+            <p>Chat and discussion Platform</p>
+
+          </div>
+
+          <div class="main">
+
+            <h5>Sign in to start chatting</h5 >
+            <form class="login-form"  action="{{url_for('login')}}" method="post">
+
+              <input type="text" placeholder="Username" autofocus name="username">
+              <br>
+              <p><small>This will be your display name</small></p>
+              <button type="submit" class="btn btn-primary" name="button">Sign in</button>
+
+            </form>
+
+          </div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Homepage
+{% endblock %}
+
+{% block head %}
+{% endblock%}
+
+{% block body %}
+          <div class="top-nav" >
+
+            <a href="javascript:void(0);" class="icon" id="menu">
+              <i class="icofont-navigation-menu" aria-hidden="true"></i>
+            </a>
+            <p id="us">{{user}}</p>
+            <h2 style="text-align:center;margin-top:10px;"><span><img src="/static/icon.png" alt="icon"></span>Flack</h2>
+
+          </div>
+
+          <div class="nav-bar">
+
+            <div id="mylinks">
+
+              <a href="{{url_for('index')}}">My rooms</a>
+              <a href="#"id="croom">Create room</a>
+              <a href="{{url_for('rooms')}}" class="active">Join a room</a>
+              <a id="logout" href="{{url_for('login')}}">Logout</a>
+
+            </div>
+
+          </div>
+
+          <div class="list-group">
+          </div>
+
+          <script id="room" type="text/x-handlebars-template">
+
+                {% raw -%}
+
+                    {{#if contents}}
+
+                      <h5 style="text-align:center;margin-top:30px;">Select a room to join</h5>
+
+                    {{/if}}
+                    {{#each contents}}
+
+                          <div class="list-group-item list-group-item-action flex-column align-items-start list-container">
+                            <div class="d-flex w-100 justify-content-between">
+
+                              <h5 class="mb-1">
+                                {{this.ch}}
+                              </h5>
+                              <a href="javascript:void(0)" onclick="fn(`{{this.ch}}`)" class="home-btn" ><i class="icofont-ui-add" style="color:#3b5998;font-size: 1em;" aria-hidden="true"></i></a>
+
+                            </div>
+
+                            <small>Created by {{this.admin}}</small>
+
+                          </div>
+
+                    {{else}}
+                      <div style="text-align:center;margin-top:150px;">
+                          <h5>Oops! There are no rooms to join</h5>
+                      </div>
+                    {{/each}}
+                {%- endraw %}
+
+          </script>
+
+          <script type="text/javascript" src="/static/js/base.js"></script>
+          <script type="text/javascript" src="/static/js/rooms.js"></script>
+
+
+{% endblock %}

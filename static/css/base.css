@@ -1,0 +1,137 @@
+*{
+   font-family: CenturyGothic, Roboto;
+   font-style: normal;
+   line-height: 16.5px;
+   vertical-align: middle;
+}
+
+html
+{
+  overflow-x:hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+body
+{
+  height: 100%;
+  padding-top: 80px;
+  background-color:#DEF2F1;
+}
+
+.top-nav
+{
+  position: fixed;
+  top:0;
+  z-index: 12;
+  width: 100vw;
+  min-height: 80px;
+  overflow: hidden;
+  padding: 3px;
+  background-color:#add8e6;
+}
+#mylinks
+{
+  display:none;
+  color: white;
+}
+
+.nav-bar a
+{
+  color: black;
+  outline: none;
+  background-color: #add8e6;
+  text-decoration: none;
+  padding: 10px 10px;
+  display: block;
+}
+
+#menu
+{
+  text-decoration: none;
+  color:white;
+  outline: none;
+  text-align: center;
+  padding: 10px 10px;
+  display: block;
+  font-size: 2em;
+  float: left;
+}
+
+#us
+{
+    font-weight:bold;
+    color:teal;
+    float:right;
+    margin-top:10px;
+    padding:10px 10px;
+    margin-right:10px;
+}
+
+.list-container
+{
+  width:90vw;
+  align-self:center;
+  margin-bottom:20px;
+}
+
+.homt-btn
+{
+  position:absolute;
+  right:10%;
+  top:30%;
+  text-decoration: none;
+  outline:none;
+}
+
+.home-btn
+{
+  margin-top: 10px;
+  outline: none;
+}
+
+@media (min-width:1066px)
+{
+
+  #menu
+  {
+    display:none;
+  }
+
+  .nav-bar
+  {
+    position:fixed;
+    top:10px;
+    left:10px;
+    z-index: 13;
+  }
+
+  .nav-bar a
+  {
+    outline: none;
+    margin-left:3px;
+  }
+
+  #mylinks
+  {
+    display: inline-flex;
+    margin-top: 15px;
+  }
+
+  .nav-bar a:hover
+  {
+    background-color: #3b5998;
+    border-radius:25px;
+    color: black;
+  }
+
+  .nav-bar a.active
+  {
+    background-color: #3b5998;
+    border-radius:25px;
+    color: white;
+  }
+
+}

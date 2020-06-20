@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{channel}}
+{% endblock %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="/static/css/roompage.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+{% endblock%}
+
+{% block body %}
+
+          <div class="top-nav">
+
+            <a href="javascript:void(0);" class="icon" id="menu">
+              <i class="icofont-ui-home" aria-hidden="true"></i>
+            </a>
+            <p id="us">{{user}}</p>
+            <h2 style="text-align:center;margin-top:10px;"><span><img src="/static/icon.png" alt="icon"></span>Flack</h2>
+            <h4 id="chname"style="color:#3b5998;text-align:center;font-weight:bold;">{{channel}}</h4>
+
+          </div>
+          <div id="participants">
+            <h4 style="background-color:#3b5998;margin:10px;">Participants</h4>
+            <ul>
+              {% for participant in participants %}
+                <li>{{participant}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+      <div id="outer-cont">
+
+          <div id="container"class="messages">
+          </div>
+
+          <script id="temp" type="text/x-handlebars-template">
+
+            {% raw -%}
+
+              {{#if contents.flag}}
+
+                <div class="container2 cont" id={{contents.id}}>
+
+              {{else}}
+
+                <div class="container1 cont" id={{contents.id}}>
+
+              {{/if}}
+
+                  <h6><strong>{{contents.user}}</strong></h6>
+                  <p>{{contents.message}}</p>
+                  <small class="text-muted">{{contents.time}} &nbsp &nbsp {{contents.date}}</small>
+
+              {{#if contents.flag}}
+
+                  <span>
+                    <a href="javascript:void(0);" class="text-muted icon" touch-action="none"  id="delete">
+                        <i class="icofont-trash" ></i>
+                    </a>
+                  </span>
+
+              {{/if}}
+
+                </div>
+
+            {%- endraw %}
+
+          </script>
+
+          <div id="footer">
+
+            <form>
+              <textarea id="text-area"  name="message"></textarea>
+              <button id="submit" class="btn btn-primary" type="submit">Send</button>
+            </form>
+
+          </div>
+</div>
+          <script type="text/javascript" src="/static/js/roompage.js"></script>
+
+
+{% endblock %}

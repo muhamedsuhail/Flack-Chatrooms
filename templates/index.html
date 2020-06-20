@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Homepage
+{% endblock %}
+
+{% block head %}
+{% endblock%}
+
+{% block body %}
+
+          <div class="top-nav" >
+
+              <a href="javascript:void(0);" class="icon" id="menu">
+                <i class="icofont-navigation-menu" aria-hidden="true"></i>
+              </a>
+              <p id="us">{{user}}</p>
+              <h2 style="text-align:center;margin-top:10px;"><span><img src="/static/icon.png" alt="icon"></span>Flack</h2>
+
+          </div>
+
+          <div class="nav-bar">
+
+            <div id="mylinks">
+
+              <a href="{{url_for('index')}}"class="active">My rooms</a>
+              <a href="#"id="croom">Create room</a>
+              <a href="{{url_for('rooms')}}">Join a room</a>
+              <a id="logout" href="{{url_for('login')}}">Logout</a>
+
+            </div>
+
+          </div>
+
+          <div class="list-group">
+
+            <h5 id="head" style="text-align:center;margin-top:30px;"></h5>
+
+          </div>
+
+          <script id="room" type="text/x-handlebars-template">
+
+                {% raw -%}
+                    {{#each contents}}
+
+                          <a onclick="myfn(`{{this.ch}}`)" class="list-group-item list-group-item-action flex-column align-items-start list-container">
+
+                            <div class="d-flex w-100 justify-content-between">
+
+                              <h5 class="mb-1">
+                                {{this.ch}}
+                              </h5>
+
+                            </div>
+                            <small>Created by {{this.admin}}</small>
+
+                          </a>
+
+                    {{else}}
+                    <div style="text-align:center;margin-top:150px;">
+
+                      <h6 >You have not joined any rooms yet<h6>
+                      <button class="btn btn-primary" onclick="redirectfn()" >Join a room</button>
+
+                    </div>
+
+                    {{/each}}
+
+                {%- endraw %}
+
+          </script>
+
+          <script type="text/javascript" src="/static/js/index.js"></script>
+          <script type="text/javascript" src="/static/js/base.js"></script>
+
+{% endblock %}
