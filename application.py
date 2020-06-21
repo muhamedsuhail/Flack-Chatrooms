@@ -7,6 +7,7 @@ from flask_session import Session
 from flask_socketio import SocketIO, emit,join_room,leave_room
 from login import *
 import itertools
+from collections import deque
 
 app = Flask(__name__)
 
@@ -28,9 +29,10 @@ socketio = SocketIO(app)
 
 channels={'College Group':["Suhail","Mark"],'School Group':["Irfan"],'Games zone':["Irfan"],'Stackoverflow':["Suhail","Bucky","Mark"]}
 
-messages={'College Group': [{'user': 'Mark', 'message': 'Hello everyone!', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 0}, {'user': 'Suhail', 'message': 'Hey Mark!', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 1}, {'user': 'Suhail', 'message': 'How are you doing??', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 2}, {'user': 'Mark', 'message': 'Im doing great man! How about you?', 'date': '21 Jun 2020', 'time': '11:25 AM', 'id': 3}, {'user': 'Suhail', 'message': 'I am doing amazingly Well!', 'date': '21 Jun 2020', 'time': '11:27 AM', 'id': 5}, {'user': 'Mark', 'message': 'Sounds good to hear!', 'date': '21 Jun 2020', 'time': '11:28 AM', 'id': 6}], 'School Group': [], 'Games zone': [], 'Stackoverflow': [{'user': 'Suhail', 'message': 'Hello guys!', 'date': '21 Jun 2020', 'time': '11:28 AM', 'id': 7}, {'user': 'Bucky', 'message': 'Hey suhail.', 'date': '21 Jun 2020', 'time': '11:29 AM', 'id': 8}, {'user': 'Suhail', 'message': 'Did you checkout my new chatroom ?', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 9}, {'user': 'Bucky', 'message': 'Yeah man.It was cool', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 10}, {'user': 'Suhail', 'message': 'How about Mark?', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 11}, {'user': 'Bucky', 'message': 'I believe he would have checked it', 'date': '21 Jun 2020', 'time': '11:31 AM', 'id': 12}]}
+messages={'College Group': deque([{'user': 'Mark', 'message': 'Hello everyone!', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 0}, {'user': 'Suhail', 'message': 'Hey Mark!', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 1}, {'user': 'Suhail', 'message': 'How are you doing??', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 2}, {'user': 'Mark', 'message': 'Im doing great man! How about you?', 'date': '21 Jun 2020', 'time': '11:25 AM', 'id': 3}, {'user': 'Suhail', 'message': 'I am doing amazingly Well!', 'date': '21 Jun 2020', 'time': '11:27 AM', 'id': 4}, {'user': 'Mark', 'message': 'Sounds good to hear!', 'date': '21 Jun 2020', 'time': '11:28 AM', 'id': 5}],maxlen=100), 'School Group': deque([],maxlen=100), 'Games zone': deque([],maxlen=100), 'Stackoverflow': deque([{'user': 'Suhail', 'message': 'Hello guys!', 'date': '21 Jun 2020', 'time': '11:28 AM', 'id': 6}, {'user': 'Bucky', 'message': 'Hey suhail.', 'date': '21 Jun 2020', 'time': '11:29 AM', 'id': 7}, {'user': 'Suhail', 'message': 'Did you checkout my new chatroom ?', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 8}, {'user': 'Bucky', 'message': 'Yeah man.It was cool', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 9}, {'user': 'Suhail', 'message': 'How about Mark?', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 10}, {'user': 'Bucky', 'message': 'I believe he would have checked it', 'date': '21 Jun 2020', 'time': '11:31 AM', 'id': 11}],maxlen=100)}
 
-i=0
+#PRIMARY_KEY
+i=12
 
 
 @app.route("/",methods=['POST','GET'])
@@ -108,7 +110,7 @@ def ajax(args):
 
                 #Creating a list to store the messages of the channel being created.
 
-                messages[channelName]=[]
+                messages[channelName]=deque(maxlen=100)
                 return 'OK'
 
     #For handling AJAX request to check participants
@@ -130,7 +132,8 @@ def msgs(channelName):
     if messages[channelName]==[] :
         return '0'
     else:
-        return jsonify(messages[channelName])
+        print(list(messages[channelName]))
+        return jsonify(list(messages[channelName]))
 
 #Socket to capture,store and broadcast new messages.
 
@@ -150,6 +153,7 @@ def new_message(data):
     i+=1
 
     messages[data['channelName']].append(d)
+    print(messages)
 
     #Broadcast the message to all participants in the Channel.
 
@@ -167,7 +171,7 @@ def delete_message(data):
         #Delete the message from server if the primary keys match.
 
         if messages[data['channelName']][i]['id']==data['msg_id']:
-            messages[data['channelName']].pop(i)
+            del messages[data['channelName']][i]
             break
 
     #Delete the message to all participants in the Channel.

@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded',()=>{
       {
         //Display all the messages to the roompage.
 
-        const response=JSON.parse(request.responseText)
+        const response=JSON.parse(request.responseText);
+        console.log(response)
         for(let i of response)
         {
             i["flag"]=user==i.user ?  true:false;
