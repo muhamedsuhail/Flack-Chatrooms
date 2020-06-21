@@ -24,9 +24,12 @@ socketio = SocketIO(app)
 
 #Global variables to store user data
 
+#Some predefined messages and channels to display beforehand.
 
-channels={'College Group':["Suhail"],'School Group':["Irfan"],'Games zone':["Irfan"],'Stackoverflow':["Suhail"]}
-messages={'College Group':[],'School Group':[],'Games zone':[],'Stackoverflow':[]}
+channels={'College Group':["Suhail","Mark"],'School Group':["Irfan"],'Games zone':["Irfan"],'Stackoverflow':["Suhail","Bucky","Mark"]}
+
+messages={'College Group': [{'user': 'Mark', 'message': 'Hello everyone!', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 0}, {'user': 'Suhail', 'message': 'Hey Mark!', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 1}, {'user': 'Suhail', 'message': 'How are you doing??', 'date': '21 Jun 2020', 'time': '11:24 AM', 'id': 2}, {'user': 'Mark', 'message': 'Im doing great man! How about you?', 'date': '21 Jun 2020', 'time': '11:25 AM', 'id': 3}, {'user': 'Suhail', 'message': 'I am doing amazingly Well!', 'date': '21 Jun 2020', 'time': '11:27 AM', 'id': 5}, {'user': 'Mark', 'message': 'Sounds good to hear!', 'date': '21 Jun 2020', 'time': '11:28 AM', 'id': 6}], 'School Group': [], 'Games zone': [], 'Stackoverflow': [{'user': 'Suhail', 'message': 'Hello guys!', 'date': '21 Jun 2020', 'time': '11:28 AM', 'id': 7}, {'user': 'Bucky', 'message': 'Hey suhail.', 'date': '21 Jun 2020', 'time': '11:29 AM', 'id': 8}, {'user': 'Suhail', 'message': 'Did you checkout my new chatroom ?', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 9}, {'user': 'Bucky', 'message': 'Yeah man.It was cool', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 10}, {'user': 'Suhail', 'message': 'How about Mark?', 'date': '21 Jun 2020', 'time': '11:30 AM', 'id': 11}, {'user': 'Bucky', 'message': 'I believe he would have checked it', 'date': '21 Jun 2020', 'time': '11:31 AM', 'id': 12}]}
+
 i=0
 
 
@@ -123,7 +126,7 @@ def ajax(args):
 @app.route("/messages/<channelName>",methods=['GET'])
 def msgs(channelName):
     #Return JSON version of messages to display in the roompage.
-
+    print(messages)
     if messages[channelName]==[] :
         return '0'
     else:
