@@ -128,11 +128,9 @@ def ajax(args):
 @app.route("/messages/<channelName>",methods=['GET'])
 def msgs(channelName):
     #Return JSON version of messages to display in the roompage.
-    print(messages)
     if messages[channelName]==[] :
         return '0'
     else:
-        print(list(messages[channelName]))
         return jsonify(list(messages[channelName]))
 
 #Socket to capture,store and broadcast new messages.
@@ -153,7 +151,6 @@ def new_message(data):
     i+=1
 
     messages[data['channelName']].append(d)
-    print(messages)
 
     #Broadcast the message to all participants in the Channel.
 
