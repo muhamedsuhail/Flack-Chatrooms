@@ -32,11 +32,16 @@ i=0
 
 @app.route("/",methods=['POST','GET'])
 def login():
+    prev_user=False
     if request.method=='GET':
         return render_template("login.html")
+    if request.method=='POST':
 
-    name=request.form.get("username").capitalize()
-    session["uname"]=name  #Add current user to session variable
+        #TO retrive previous user's session
+        prev_user=request.form.get("puser").capitalize() if(request.form.get("puser")) else None
+
+    name=request.form.get("username").capitalize() if(request.form.get("username")) else None
+    session["uname"]=prev_user if(prev_user) else name  #Add current/previous session user to session variable
 
     return redirect('/index')
 

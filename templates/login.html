@@ -12,14 +12,21 @@ Flack: Chat and discussion Platform
           var last_room=localStorage.getItem("last_room");
           if(last_user)
           {
-            if(last_room)
-            {
-                window.location.pathname=`/roompage/${last_room}`;
+            const request=new XMLHttpRequest();
+            request.open('POST','/');
+            request.onload=()=>{
+              if(last_room)
+              {
+                  window.location.pathname=`/roompage/${last_room}`;
+              }
+              else
+              {
+                  window.location.pathname='/index';
+              }
             }
-            else
-            {
-                window.location.pathname='/index';
-            }
+            const data=new FormData();
+            data.append('puser',last_user)
+            request.send(data);
           }
       </script>
 
