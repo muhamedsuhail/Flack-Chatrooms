@@ -81,20 +81,24 @@ textarea{
 {
   #outer-cont
   {
-    margin:0 auto;
-    width:60vw;
+    position: absolute;
+    right: 0;
+    width:80vw;
     height: 78vh;
   }
   #participants
   {
     display: block;
+    background-color: #3b5998;
     position: absolute;
+    min-height: 300px;
+    min-width: 200px;
     top:30%;
-
+    left:2%;
   }
   #footer
   {
     padding: 10px;
-    width: 60%;
+    width: 80%;
   }
 }

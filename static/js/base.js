@@ -4,11 +4,6 @@ var menuicon=document.querySelector('.icon');
 var logout=document.querySelector('#logout');
 var click_event=(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent))? 'touchstart':'click';
 
-if(click_event=='click')
-{
-  alert("The layout of this website is designed for mobile. For better experience visit the website in your mobile browser")
-}
-
 //Stores user to localStorage for retrieval of previous session.
 
 localStorage.setItem("last_user",user);
