@@ -1,6 +1,6 @@
 # Flack - Chatrooms
 
-A Chatroom Application with socket.io
+A Chatroom Website with Flask and Socket.io
 
 ## Use the website on heroku --> [Flack](https://flack-chatrooms.herokuapp.com/)
 
