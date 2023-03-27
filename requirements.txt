@@ -10,4 +10,4 @@ python-socketio==4.3.0
 Werkzeug==0.16.0
 tornado==6.0.4
 Flask-Sockets==0.2.1
-redis==3.5.3
+redis==4.5.3
